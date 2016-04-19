@@ -1,0 +1,110 @@
+<template name="Step2">
+
+  <div class="stdstep">
+    <div class="row">
+      <div class="col-xs-12">
+
+        <div class="panel panel-default">
+          <div id="stdstep-panel-heading" class="panel-heading">
+            <h1 id="stdstep-panel-title" class="panel-title text-center">Step 2 - Compare the truthier odds with the average</h1>
+          </div>
+
+          <div class="panel-body">
+            {{#each oddsReactive in oddsAverages}}
+              {{>InputOdds odds=oddsReactive arrayKey='oddsAverages' arrayIndex=@index}}
+            {{/each}}
+
+            {{> notifications}}
+
+            <div id="container-data-processing-step2" style="min-width: 310px; height: 400px; display: none;"></div>
+
+            <div class="help-block">
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-option-horizontal"></span>
+                  Detailed explanation
+                </div>
+                <div class="panel-body">
+                  <!--<p>This is what you're looking for:</p>-->
+                  <!--<p><img src="images/step 1 - odds example.png" class="img-responsive"></p>-->
+                  <p>Log into <a target="_blank" href="http://www.oddsportal.com">oddsportal.com</a> or <a target="_blank" href="https://www.betbrain.com">betbrain.com</a>. At settings, make sure you have all the bookmakers selected. Next, go to the event where you want to place a bet, take the average odds that correspond to your pick and put them in the text boxes from above.</p>
+
+                </div>
+              </div>
+
+              <!--<div class="panel panel-default">-->
+                <!--<div class="panel-heading"><span class="glyphicon glyphicon-question-sign"-->
+                                                 <!--aria-hidden="true"></span>-->
+                  <!--Question?-->
+                <!--</div>-->
+                <!--<div class="panel-body">-->
+                  <!--Text.-->
+                <!--</div>-->
+              <!--</div>-->
+
+            </div>
+
+            <div class="more-block">
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-question-sign"></span>
+                  What's missing from "Step 2"? What other steps could be added?
+                </div>
+                <div class="panel-body">
+                  <p>Good question. I have my own ideas regarding this but I'd rather hear yours first. This application is open source and we work on improving it in two places:</p>
+                  <ul>
+                    <li>On Slack: https://gamblersunited.slack.com (<a href="#" id="slack">click here if you'd like an invite</a>)</li>
+                    <li>On GitHub: <a target="_blank" href="https://github.com/Gamblers-United/FilterBet.win">https://github.com/Gamblers-United/FilterBet.win</a></li>
+                  </ul>
+
+                  <p>Go ahead and submit a pull request or come talk!</p>
+
+                </div>
+              </div>
+
+            </div>
+
+            {{#if showProcessingTitle}}
+
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        {{showProcessingTitle}}
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                      <p>{{{showProcessingBody}}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            {{/if}}
+
+            {{#if showReactiveTable}}
+              {{> reactiveTable settings=reactiveTableSettings}}
+            {{/if}}
+
+          </div>
+
+          <div class="panel-footer pull-right">
+            <div class="btn-group">
+              <button id="help" class="btn btn-default">Help and tips!</button>
+              <button id="more" class="btn btn-default">What's missing?</button>
+              <button id="back" class="btn btn-default">Back</button>
+              <button id="restart" class="btn btn-default">Restart</button>
+              <button id="next" class="btn btn-default {{isSubmitButtonEnabled}}">Submit finding</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</template>

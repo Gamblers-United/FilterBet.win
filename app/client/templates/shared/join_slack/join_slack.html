@@ -1,0 +1,29 @@
+<template name="JoinSlack">
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Join the chat!</h4>
+        </div>
+
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient" class="control-label">Your email:</label>
+              <input type="text" class="form-control" id="recipient">
+            </div>
+          </form>
+          <p>You will receive the invite in the email that you write above. It might take up to 48 hours because I have to send them manually.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" id="sendInvite" class="btn btn-primary">Send me an invite!</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>

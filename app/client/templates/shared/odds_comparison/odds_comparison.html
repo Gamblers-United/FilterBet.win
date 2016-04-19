@@ -1,0 +1,19 @@
+<template name="OddsComparison">
+  <div class="odds-comparison">
+    <table class="table table-responsive">
+      <tr class="text-danger text-center">
+        The table of probabilities
+      </tr>
+      <tr class="active">
+        <td>Implied</td>
+        <td>Truthier</td>
+      </tr>
+      {{#each set in oddsChecked}}
+        <tr>
+          <td>{{set.asPercentage}}</td>
+          <td>{{set.asTruthier}}</td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+</template>

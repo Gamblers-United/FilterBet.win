@@ -1,0 +1,120 @@
+<template name="Step4">
+
+  <div class="stdstep">
+    <div class="row">
+      <div class="col-xs-12">
+
+        <div class="panel panel-default">
+          <div id="stdstep-panel-heading" class="panel-heading">
+            <h1 id="stdstep-panel-title" class="panel-title text-center">Step 2 - Compare the truthier odds with the average</h1>
+          </div>
+
+          <div class="panel-body">
+            {{#each oddsReactive in oddsAverages}}
+              {{>InputOdds odds=oddsReactive arrayKey='oddsAverages' arrayIndex=@index}}
+            {{/each}}
+
+            {{> notifications}}
+
+            <div id="container-data-processing-step2" style="min-width: 310px; height: 400px; display: none;"></div>
+
+            <div class="help-block">
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-option-horizontal"></span>
+                  Detailed explanation
+                </div>
+                <div class="panel-body">
+                  <p>Look at the image below:</p>
+                  <p><img src="images/step 1 - odds example.png" class="img-responsive"></p>
+                  <p>On oddsportal.com, an odds comparison service, I've randomly selected an event and we're
+                    looking at the
+                    odds offered by Pinnacle, SBOBET and a few other bookmakers.
+                    There are two possible outcomes: (1) and (2).
+                    Let's say I'm a big believer in (1) and I'll be placing my bet at Pinnacle.
+                    The odds are 1.9 and I'll write them in the first text box from above.
+                    Since they offer 2.02 for the opposite outcome, I'll write "2.02" in the second text box.
+                    We're done with Step 1! This one was the easiest.
+                  </p>
+
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-question-sign"
+                                                 aria-hidden="true"></span>
+                  Are you being charged to pay money?
+                </div>
+                <div class="panel-body">
+                  Is your bookmaker or exchange applying a commission to deposit or withdraw? Check right now! If it
+                  does, man up:
+                  do not bet, withdraw immediately and never look back. Hidden costs are the mark of scummy businesses.
+                  When you buy something from a supermarket, you don't pay an extra charge for every dollar spent.
+                  You also don't pay a commission if you still got some money in your wallet at the exit.
+                  This behaviour is never acceptable. It also makes calculating the real odds impossible.
+                </div>
+              </div>
+
+            </div>
+
+            <div class="more-block">
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-question-sign"></span>
+                  What's missing from "Step 1"?
+                </div>
+                <div class="panel-body">
+                  <p>If there is enough interest for the app, a forth column will be added: FLB-adjusted Probability.
+                    FLB means "favorite-longshot bias" but I'm also considering the reverse favorite-longshot bias.
+                    In order for it to work, it will ask if the pick is at moneyline or what is the handicap, and what is the sport.</p>
+
+                  <p>After that it will use these studies in order to give an idea of an even truthier probability
+                    (note that these anomalies in market efficiency usually happen either with heavy favorites or with heavy underdogs):</p>
+
+                  <strong>Money Line</strong>
+                  <p>The favorite-longshot bias has been documented in sports where heavy favorites often exist:</p>
+                  <ul>
+                    <li>horse racing (Sauer, 1998 and Snowberg and Wolfers, 2010)</li>
+                    <li>college basketball and college football (Berkowitz, J. P., Depken, I. I. C. A., and Gandar, J., 2016)</li>
+                  </ul>
+                  <p>The reverse favorite-longshot bias has been documented in sports where heavy favorites don't usually exist:</p>
+                  <ul>
+                    <li>baseball (Woodland and Woodland, 1994)</li>
+                    <li>hockey (Woodland and Woodland, 2001, 2011 and Gandar et al., 2004)</li>
+                  </ul>
+
+
+                  <strong>Handicap</strong>
+                  <p>The reverse favorite-longshot bias has been documented in:</p>
+                  <ul>
+                    <li>basketball (Paul and Weinbach, 2005a)</li>
+                    <li>basketball and college football (Paul and Weinbach, 2005b and Paul, Weinbach and Weinbach, 2003)</li>
+                    <li>American football (Vergin and Scriabin, 1978)</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+            {{#if showReactiveTable}}
+              {{> reactiveTable settings=reactiveTableSettings}}
+            {{/if}}
+          </div>
+
+          <div class="panel-footer pull-right">
+            <div class="btn-group">
+              <button id="help" class="btn btn-default">Help and tips!</button>
+              <button id="more" class="btn btn-default">What's missing?</button>
+              <button id="back" class="btn btn-default">Back</button>
+              <button id="restart" class="btn btn-default">Restart</button>
+              <button id="submit" class="btn btn-default {{isSubmitButtonEnabled}}">Submit finding</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</template>

@@ -1,0 +1,12 @@
+/*****************************************************************************/
+/* Step1: Style */
+/*****************************************************************************/
+.label-eq-around, #commission {
+  color: purple;
+}
+#js-commission-plan .dropdown-toggle {
+  background-color: #EEEEEE;
+}
+#commission-group, #container-data-processing-step1 {
+  display: none;
+}

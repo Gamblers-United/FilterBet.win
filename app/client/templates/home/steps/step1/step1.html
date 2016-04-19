@@ -1,0 +1,201 @@
+<template name="Step1">
+
+  <div class="stdstep">
+    <div class="row">
+      <div class="col-xs-12">
+
+        <div class="panel panel-default">
+          <div id="stdstep-panel-heading" class="panel-heading">
+            <h1 id="stdstep-panel-title" class="panel-title text-center">Step 1 - Filter bets with greedy bookmaker
+              margins</h1>
+          </div>
+
+          <div class="panel-body">
+            {{#each oddsReactive in oddsChecked}}
+              {{>InputOdds odds=oddsReactive arrayKey='oddsChecked' arrayIndex=@index}}
+            {{/each}}
+
+            {{> notifications}}
+
+            <div class="form-group">
+              <div class="input-group">
+                <button id="js-add-outcome" class="btn btn-default" type="button" data-toggle="tooltip"
+                        data-placement="right"
+                        title="More than two possible outcomes? Then click the plus sign."><span
+                    class="glyphicon glyphicon-plus"></span></button>
+                <button id="js-remove-outcome" class="btn btn-default" type="button" {{isRemoveButtonDisabled}}><span
+                    class="glyphicon glyphicon-minus"></span></button>
+              </div>
+            </div>
+
+            <div class="form-group" id="commission-group">
+              <!-- Upper Label -->
+              <label for="commission" class="label-eq-around">Are these odds at an exchange? If so, they must be
+                discounted with the commission.</label>
+              <div class="input-group">
+                <!-- Inline Label -->
+                <span class="input-group-addon" id="label-eq-inline">Input it manually or select a standard plan, then apply it through the dropdown menu:</span>
+
+                <!-- Text Box -->
+                <input type="text" class="form-control text-right" id="commission" value="0%">
+
+                <!-- Dropdown -->
+                <div class="input-group-btn" id="js-commission-plan">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select a
+                    standard plan<span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Matchbook</a></li>
+                    <li><a href="#">Betfair</a></li>
+                    <li><a href="#">Smarkets</a></li>
+                    <li><a href="#">BETDAQ</a></li>
+                    <li><a href="#">Betsson</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Apply Commission</a></li>
+                  </ul>
+                </div><!-- /btn-group -->
+              </div><!-- /input-group -->
+            </div><!-- /form-group -->
+
+            <div id="container-data-processing-step1" style="min-width: 310px; height: 400px;"></div>
+
+            {{#if showProcessingTitle}}
+
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        {{showProcessingTitle}}
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                      <p>{{{showProcessingBody}}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            {{/if}}
+
+            {{#if showReactiveTable}}
+              {{> reactiveTable settings=reactiveTableSettings}}
+            {{/if}}
+
+            <div class="row">
+            </div>
+
+            <div class="help-block">
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-option-horizontal"></span>
+                  Detailed explanation
+                </div>
+                <div class="panel-body">
+                  <p>Look at the image below:</p>
+                  <p><img src="images/step 1 - odds example.png" class="img-responsive"></p>
+                  <p>On oddsportal.com, an odds comparison service, I've randomly selected an event and we're looking at the odds offered by Pinnacle, SBOBET and a few other bookmakers. There are two possible outcomes: (1) and (2). Let's say I'm a big believer in (1) and I'll be placing my bet at Pinnacle. The odds are 1.9 and I'll write them in the first text box from above. Since they offer 2.02 for the opposite outcome, I'll write "2.02" in the second text box. We're done with Step 1! This one was the easiest.
+                  </p>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-question-sign"
+                                                 aria-hidden="true"></span>
+                  Are you being charged to pay money?
+                </div>
+                <div class="panel-body">
+                  Is your bookmaker or exchange applying a commission to deposit or withdraw? Check right now! If it does, man up: do not bet, withdraw immediately and never look back. Hidden costs are the mark of scummy businesses. When you buy something from a supermarket, you don't pay an extra charge for every dollar spent. You also don't pay a commission if you still got some money in your wallet at the exit. This behaviour is never acceptable. It also makes calculating the real odds impossible.
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-question-sign"
+                                                 aria-hidden="true"></span>
+                  Did you know that it's usually bad to have more than two possible outcomes? (for example "1x2")
+                </div>
+                <div class="panel-body">
+                  The more outcomes there are, the bigger the share taken from the pool of money by the bookmakers. If you didn't know about this, it would be in your best interest to first take a break; use it in order to learn about handicap betting and under/overs. These types of bets have only two outcomes! It will help you tremendously in the long run.
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-question-sign"
+                                                 aria-hidden="true"></span>
+                  What is "Implied Probability"?
+                </div>
+                <div class="panel-body">
+                  The implied probability is a conversion of the odds offered by the bookmaker into a percentage. This is not the true probability of the outcome occurring. Let's say there's an event with two possible outcomes, A and B. Each has a true probability of 50%. The bookmaker gets an edge by considering both outcomes more likely, for example 55% and 55% respectively. They total 110% and the extra 10% is called "overround". When 55% is converted into odds, you get a lower offer than what you would hope for (worse odds).
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-question-sign"
+                                                 aria-hidden="true"></span>
+                  What is "Truthier Probability"?
+                </div>
+                <div class="panel-body">
+                  Sporting events are too complex and it is impossible to determine the true probability of on outcome. We can take advantage of market efficiency in order to arrive at a probability closer to the actual one. As time passes and we get closer to kickoff time, it will usually become more accurate. Here we call this "truthier probability". It's simply the odds transformed into percentages with the overround removed. I repeat because it is of extreme importance: usually this will get closer to the true probability as odds evolve and the kickoff time approaches. If you have more information than what's available in the public domain or if you use what's already there better, less than half the time you'll get the best odds as soon as the event becomes available at the bookmaker. There's a reverse to this coin: the limits will also be lower. There are two easy paths in professional sports betting and you have to choose one:
+                  <ol>
+                    <li>Concentrate on finding picks as early as possible. This means you'll need to have your choices ready even before they are listed at the bookmakers. It also means you'll have to automate the betting through the APIs because you need to place the bets as soon as the events become available. <a target="_blank" href="https://custom.digital">Custom.Digital</a> is a company that has done sports betting automation software for a lot of clients. Go to them with full trust.</li>
+                    <li>Concentrate on becoming an expert in a single league which has very high volume. For example if you'd do your betting on soccer, I would not recommend specializing in anything than these leagues (in order of importance/volume): UK, Germany, Spain, Italy and maybe France. The reason is simple: your margins will be a lot lower than with the first method therefore you'll have to place larger bets. You'll also place your bets closer to kickoff time, when the volume is higher. Software can help here as well by monitoring odds and betting or laying only when they move into value.</li>
+                  </ol>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="more-block">
+
+              <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-question-sign"></span>
+                  What's missing from "Step 1"?
+                </div>
+                <div class="panel-body">
+                  <p>If there is enough interest for the app, a forth column will be added: FLB-adjusted Probability. FLB means "favorite-longshot bias" but I'm also considering the reverse favorite-longshot bias. In order for it to work, it will ask first what is the sport. If needed, a second question will be asked: is the pick at moneyline or at handicap (and in the latter case, what is the handicap)?</p>
+
+                  <p>After that it will use the following studies in order to give an idea of an even truthier probability (note that these anomalies in market efficiency usually happen either with heavy favorites or with heavy underdogs):</p>
+
+                  <strong>Money Line</strong>
+                  <p>The favorite-longshot bias has been documented in sports where heavy favorites often exist:</p>
+                  <ul>
+                    <li>horse racing (Sauer, 1998 and Snowberg and Wolfers, 2010)</li>
+                    <li>college basketball and college football (Berkowitz, J. P., Depken, I. I. C. A., and Gandar, J., 2016)</li>
+                  </ul>
+                  <p>The reverse favorite-longshot bias has been documented in sports where heavy favorites don't usually exist:</p>
+                  <ul>
+                    <li>baseball (Woodland and Woodland, 1994)</li>
+                    <li>hockey (Woodland and Woodland, 2001, 2011 and Gandar et al., 2004)</li>
+                  </ul>
+
+
+                  <strong>Handicap</strong>
+                  <p>The reverse favorite-longshot bias has been documented in:</p>
+                  <ul>
+                    <li>basketball (Paul and Weinbach, 2005a)</li>
+                    <li>basketball and college football (Paul and Weinbach, 2005b and Paul, Weinbach and Weinbach, 2003)</li>
+                    <li>American football (Vergin and Scriabin, 1978)</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="panel-footer pull-right">
+            <div class="btn-group">
+              <button id="help" class="btn btn-default">Help and tips!</button>
+              <button id="more" class="btn btn-default">What's missing?</button>
+              <button id="reset" class="btn btn-default {{isResetButtonDisabled}}">Reset input</button>
+              <button id="next" class="btn btn-default {{isNextButtonEnabled}}">Go to step 2</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</template>

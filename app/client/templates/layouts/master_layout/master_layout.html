@@ -1,0 +1,36 @@
+<template name="MasterLayout">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <ul id="menuitems" class="nav nav-pills">
+          <li id="js-menu-bets" data-route="{{pathFor 'bets'}}" class="{{isActiveRoute 'bets'}}"><a
+              href="{{pathFor 'bets'}}">List
+            findings</a></li>
+          <li id="js-menu-home" data-route="{{pathFor 'home'}}" class="{{isActiveRoute 'home'}}"><a
+              href="{{pathFor 'home'}}">Check
+            bet</a></li>
+        </ul>
+      </div>
+
+      <div class="collapse navbar-collapse navbar-right">
+        <p id="motto" class="navbar-text">
+          Filter bets. Drop bad ones. No more exceptions.
+        </p>
+      </div>
+    </div>
+  </nav>
+
+  {{#momentum plugin='iron-router' options=transition}}
+    {{> yield}}
+  {{/momentum}}
+
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted">Created by Laurențiu Andronache | Version 1.0 | <a target="_blank" href="http://gamblers-united.com">Gamblers
+        United</a> | <a target="_blank" href="https://custom.digital">Custom.Digital</a> | Do you have
+        a
+        business proposal? {{{email}}}
+      </p>
+    </div>
+  </footer>
+</template>
